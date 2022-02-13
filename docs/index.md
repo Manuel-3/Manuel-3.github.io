@@ -1,5 +1,6 @@
 ---
-title: Tutorials and Resources
+title: Overview
+location: /
 ---
 
 # Lua

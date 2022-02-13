@@ -1,10 +1,11 @@
 ---
 title: Figura Lua Scripts
+article: true
 ---
 
-> ~ 3 minute read
-
 Now that you [know how to program](/lua-quickstart), you should be able to use [the wiki](https://github.com/Blancworks/Figura/wiki) to get what you need. Some things are currently not on the wiki since its a little outdated, so we will cover these things below.
+
+# Basics
 
 Your script is executed when your avatar loads. For you this happens when you equip the avatar, for other players when you enter their render distance.
 
@@ -25,6 +26,8 @@ end
 
 You will do most stuff inside the `tick` function. Note that you can have multiple tick or render functions (Unlike regular functions which names have to be unique).
 
+# Accessing your model
+
 Next, we have the `model` tree. This will give you access to your BlockBench model. It is structured the exact same way the outliner in BlockBench shows your cubes and groups. Figura provides a variable called `model` which contains all your modelparts.
 
 ![outliner-1](/assets/outliner-1.png)
@@ -33,7 +36,9 @@ Next, we have the `model` tree. This will give you access to your BlockBench mod
 model.Head.Hat.setEnabled(false) -- hides the hat
 ```
 
-### Action Wheel and Keybinds
+Here is the [wiki page](https://github.com/Blancworks/Figura/wiki/Custom-Model-Part) about model parts.
+
+# Action Wheel and Keybinds
 
 The action wheel allows us to bring up a wheel by pressing `B` and we can attach functions to the wheel slots.
 
@@ -61,7 +66,7 @@ end
 
 Important! Other players don't know that you clicked the slot! To send the information about the click to other players we use Figuras pings system.
 
-### Pings
+# Pings
 
 Pings are used to send information that is only available to the host (you) to all other players. To make a ping function make a function inside the `ping` table like so:
 

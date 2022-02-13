@@ -1,18 +1,18 @@
 ---
 title: Lua Quickstart
+location: /lua-quickstart
+article: true
 ---
-
-> ~ 5 minute read
 
 This is an absolute beginners guide to programming. This will only cover the absolute basics you need to understand. If you want to learn more about Lua check out the [Lua Documentation](https://www.lua.org/pil/1.html). Here is a [Table of Contents](https://www.lua.org/pil/contents.html#1).
 
-## How a computer reads code
+# How a computer reads code
 
 Computers read code line by line from the top to the bottom of the file. Each line is just a command telling the computer what to do.
 
 We will now cover the most important concepts you need to know.
 
-## Variables
+# Variables
 
 This is how you create a variable:
 
@@ -31,7 +31,7 @@ sum = num1 + num2 -- Store the sum inside another variable
 print(sum) -- Prints "10"
 ```
 
-## Functions
+# Functions
 
 Functions are useful for things you want to use multiple times in your code. Instead of re-writing the code every time, instead you can just call the function and any code inside of it will be executed. (To "call" a function basically just means to execute it)
 
@@ -75,7 +75,7 @@ result = sum(3,5)
 print(result) -- Prints "8"
 ```
 
-## Conditions
+# Conditions
 
 In order to do something under some condition we use the `if` keyword. You can think of it as a question, "if that happens do this, otherwise do something else".
 
@@ -138,6 +138,6 @@ end
 end
 ```
 
-## Figura Specific
+# Figura Specific
 
 Now that we have that out of the way, you can take a look at [what you need to know for Figura](/figura-scripts).
