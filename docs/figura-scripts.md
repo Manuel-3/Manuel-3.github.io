@@ -1,10 +1,10 @@
 ---
-title: Figura Specific Lua Quickstart
+title: Figura Lua Scripts
 ---
 
 > ~ 3 minute read
 
-Now that you know how to program, you should be able to use [the wiki](https://github.com/Blancworks/Figura/wiki) to get what you need. Some things are currently not on the wiki since its a little outdated, so we will cover these things below.
+Now that you [know how to program](/lua-quickstart), you should be able to use [the wiki](https://github.com/Blancworks/Figura/wiki) to get what you need. Some things are currently not on the wiki since its a little outdated, so we will cover these things below.
 
 Your script is executed when your avatar loads. For you this happens when you equip the avatar, for other players when you enter their render distance.
 
