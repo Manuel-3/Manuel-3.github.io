@@ -39,8 +39,7 @@
     <main id="content" class="main-content" role="main">
       {% if page.article %}
         {% assign readingTime = content | number_of_words %}
-        {% assign readingTime = readingTime | divided_by:100.0 %}
-        {% assign readingTime = readingTime | times:0.5 %}
+        {% assign readingTime = readingTime | divided_by:200.0 %}
         {% assign readingTime = readingTime | floor %}
         <blockquote><p>~ {{ readingTime }} minute read</p></blockquote>
       {% endif %}

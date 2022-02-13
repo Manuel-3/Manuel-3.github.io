@@ -4,7 +4,7 @@ location: /lua-quickstart
 article: true
 ---
 
-This is an absolute beginners guide to programming. This will only cover the absolute basics you need to understand. If you want to learn more about Lua check out the [Lua Documentation](https://www.lua.org/pil/1.html). Here is a [Table of Contents](https://www.lua.org/pil/contents.html#1).
+This is a beginners guide to programming in Lua. We will only cover the absolute basics you need to know to make simple [Figura](https://www.curseforge.com/minecraft/mc-mods/figura) scripts. If you want to learn more about Lua check out the [Lua Documentation](https://www.lua.org/pil/1.html). Here is a [Table of Contents](https://www.lua.org/pil/contents.html#1).
 
 # How a computer reads code
 
