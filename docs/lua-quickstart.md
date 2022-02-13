@@ -37,7 +37,7 @@ Functions are useful for things you want to use multiple times in your code. Ins
 
 ```lua
 function test()
-	-- anything you put inside here will be executed when the function is called
+    -- anything you put inside here will be executed when the function is called
 end
 ```
 
@@ -49,7 +49,7 @@ In this function, we just print a message depending on what name you give to the
 
 ```lua
 function greeting(name)
-	print("Hello " .. name)
+    print("Hello " .. name)
 end
 ```
 
@@ -66,7 +66,7 @@ Functions can also return a value, here is an example:
 
 ```lua
 function sum(a,b)
-	local c = a+b -- Use the local keyword to make a variable that is only used inside of this block
+    local c = a+b -- Use the local keyword to make a variable that is only used inside of this block
     return c -- Use the return keyword to give back a value to the caller
 end
 
@@ -120,9 +120,9 @@ Note: Its good to indent your code properly to easily tell where blocks begin an
 -- good:
 
 function test(thing)
-	if thing then
-		print("yes")
-	else
+    if thing then
+        print("yes")
+    else
         print("no")
     end
 end
