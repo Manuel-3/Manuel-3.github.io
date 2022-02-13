@@ -77,7 +77,7 @@ print(result) -- Prints "8"
 
 # Conditions
 
-In order to do something under some condition we use the `if` keyword. You can think of it as a question, "if that happens do this, otherwise do something else".
+In order to do something under some condition we use the `if` keyword. You can think of it as "if X happens do this, otherwise do something else".
 
 ```lua
 if condition then
