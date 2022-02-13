@@ -2,6 +2,8 @@
 title: Lua Quickstart
 ---
 
+> ~ 7 minute read
+
 This is an absolute beginners guide to programming. This will only cover the absolute basics you need to understand to make Figura Avatar Scripts. If you want to learn more about Lua check out the [Lua Documentation](https://www.lua.org/pil/1.html). Here is a [Table of Contents](https://www.lua.org/pil/contents.html#1).
 
 ## How a computer reads code
@@ -100,7 +102,7 @@ else
 end
 ```
 
-To compare variables we can use `==` to test if something is equal, `<` to test if something is smaller or `>` to test if something is greater. Note that we use double equals `==` here, because a single equals `=` symbol is used to assign values to variables.
+To compare variables we can use `==` to test if something is equal, `<` to test if something is smaller or `>` to test if something is greater. Note that we use double equals `==` here, because a single equals `=` symbol is used to assign values to variables. There is also `<=` for "smaller or equal to", and `>=` for "greater or equal to".
 
 ```lua
 name = "Dawn"
@@ -144,9 +146,9 @@ Now that we have that out of the way, lets start with what you need to know for 
 
 If you somehow ended up on this site without knowing about [Figura](https://www.curseforge.com/minecraft/mc-mods/figura), first off all, welcome! I don't know how you found this but thanks for reading!
 
-Anyway, let's continue. Most importantly, if your avatar loads your code will only be executed once, however most of the time you want to continuously check your players state and act accordingly to it.
+Anyway, let's continue. Most importantly, if your avatar loads your code will only be executed once, however most of the time you want to continuously check your player's state and act accordingly to it.
 
-If you name your functions exactly `tick` or `render`, Figura will call them regularly. There is also `world_render` which is almost the same as `render` except that it will also run if your model is not in the players view.
+If you name your functions exactly `tick` or `render`, Figura will call them regularly. There is also `world_render` which is almost the same as `render` except that it will also run if your model is not in the player's view.
 
 ```lua
 function tick()
@@ -197,7 +199,7 @@ function world_render()
 end
 ```
 
-Important! Other players don't know about that you clicked the slot! To send the information about the click to other players we use Figuras pings system.
+Important! Other players don't know that you clicked the slot! To send the information about the click to other players we use Figuras pings system.
 
 ### Pings
 
