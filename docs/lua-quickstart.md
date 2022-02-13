@@ -1,4 +1,6 @@
-# Lua Quickstart
+---
+title: Lua Quickstart
+---
 
 This is an absolute beginners guide to programming. This will only cover the absolute basics you need to understand to make Figura Avatar Scripts. If you want to learn more about Lua check out the [Lua Documentation](https://www.lua.org/pil/1.html). Here is a [Table of Contents](https://www.lua.org/pil/contents.html#1).
 
@@ -18,7 +20,9 @@ This is how you create a variable:
 myVar = 3
 ```
 
-On the left side you put the variable name, in this case I just called it "myVar". Then you put a ``=`` symbol and on the right side you put the value you want to assign. This basically just stores the value `3` inside your variable. Whenever you use this same variable again, it will use this value to do things. (Note: you can make comments in your code by putting two minus symbols, anything right of that gets ignored, this is good for descriptions or putting notes)
+On the left side you put the variable name, in this case I just called it "myVar". Then put a ``=`` symbol and on the right side put the value you want to assign. This basically just stores the value `3` inside your variable. Whenever you use this same variable again, it will use this value to do things.
+
+Note: You can make comments in your code by putting two minus symbols, anything right of that gets ignored, this is good for descriptions or putting notes.
 
 ```lua
 num1 = 3 -- Creates a variable and assigns it the value 3
