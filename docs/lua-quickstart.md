@@ -142,7 +142,9 @@ end
 
 Now that we have that out of the way, lets start with what you need to know for Figura.
 
-Most importantly, if your avatar loads your code will only be executed once, however most of the time you want to continuously check your players state and act accordingly to it.
+If you somehow ended up on this site without knowing about [Figura](https://www.curseforge.com/minecraft/mc-mods/figura), first off all, welcome! I don't know how you found this but thanks for reading!
+
+Anyway, let's continue. Most importantly, if your avatar loads your code will only be executed once, however most of the time you want to continuously check your players state and act accordingly to it.
 
 If you name your functions exactly `tick` or `render`, Figura will call them regularly. There is also `world_render` which is almost the same as `render` except that it will also run if your model is not in the players view.
 
