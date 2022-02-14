@@ -14,7 +14,7 @@ For the first part let's just use this dummy animation. To make it, I just expan
 
 To animate it, all we have to do is make a script that cycles through these. To do this, we can use `World#getTime()` and `CustomModelPart#setUV({u,v})`.
 
-The `setUV` function shifts the UV box by a given amount. It will offset it relative to the default position we have given in in BlockBench, in this case the lower left corner. Since `setUV` takes a value fraction as input (1 means whole texture size, 0.5 means half of the texture size, etc..) we can just shift it 1/8 every step to make it go through all 8 frames.
+The `setUV` function shifts the UV box by a given amount. It will offset it relative to the default position we have given it in BlockBench, in this case the lower left corner. Since `setUV` takes a value fraction as input (1 means whole texture size, 0.5 means half of the texture size, etc..) we can just shift it 1/8 every step to make it go through all 8 frames.
 
 ```lua
 function tick()
