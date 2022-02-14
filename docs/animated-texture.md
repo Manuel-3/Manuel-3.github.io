@@ -8,7 +8,7 @@ In this tutorial we are going to make a blinking animation. To make it a little 
 
 ![Face and Head seperated](./assets/model-1.gif)
 
-Here is the texture animation I will be using for this tutorial. To make it, I just expanded the default texture to make space at the bottom and drew a relatively dumb animation. Set the UV box for the face to be the first frame.
+For the first part let's just use this dummy animation. To make it, I just expanded the default texture to make space at the bottom and drew a few frames. Set the UV box for the face to be the first frame.
 
 ![Texture UV layout](./assets/texture-1.png)
 
