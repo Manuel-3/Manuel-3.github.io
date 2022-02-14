@@ -1,5 +1,6 @@
 ---
 title: Animated Texture
+article: true
 ---
 
 Animating a texture in Figura works differently than in resource packs. Instead of a `.mcmeta` file, we use `CustomModelPart#setUV({u,v})` to change the texture coordinates a cube is using.
