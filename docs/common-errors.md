@@ -23,6 +23,19 @@ model.Hat.setEnabled(false) -- error
 model.Head.Hat.setEnabled(false) -- fixed
 ```
 
+# attempt to call nil
+
+Similar to attempt to index nil, but this time you are trying to use something that doesn't exist as a function.
+
+![attempt to call nil](./assets/error-6.png)
+
+```lua
+player.isGrounded() -- error, isGrounded doesnt exist
+--               ^
+
+player.isOnGround() -- fixed, this function was renamed
+```
+
 # Player Entity does not exist yet
 
 ![Player Entity does not exist yet](./assets/error-1.png)
@@ -61,12 +74,31 @@ In Lua you have to close code blocks using the `end` keyword. This applies to fu
 
 ```lua
 -- error:
-if player.isGrounded() then
+if player.isOnGround() then
     log("On Ground")
 
 -- fixed:
-if player.isGrounded() then
+if player.isOnGround() then
     log("On Ground")
+end
+```
+
+# \<eos\> expected
+
+This is pretty much the opposite of 'end' expected. Somewhere you have an `end` too many. This is also mostly caused by bad indentation and therefore bad readability.
+
+![eos expected](./assets/error-7.png)
+
+```lua
+-- error:
+function tick()
+
+    end
+end
+
+-- fixed:
+function tick()
+
 end
 ```
 
