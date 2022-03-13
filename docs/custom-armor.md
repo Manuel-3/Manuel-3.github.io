@@ -25,6 +25,14 @@ armor_model.HELMET.setScale({0.9,0.9,0.9})
 
 # Custom armor using custom texture
 
+First, don't forget to hide the vanilla armor.
+
+```lua
+for _, v in pairs(armor_model) do
+    v.setEnabled(false)
+end
+```
+
 If you want custom armor, simply make cubes for it in BlockBench. Make sure that they are inside your keyword groups so they also move along with the body parts. A simple way to make armor is to duplicate a cube and using the inflate value to make it a little bigger. Then move it's UV to a new spot where you can put the armor texture.
 
 Here are the inflate values you should be using:
