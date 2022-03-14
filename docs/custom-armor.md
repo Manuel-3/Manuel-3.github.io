@@ -8,7 +8,7 @@ There are several ways to make custom armor. Let's take a look at all of them:
 - Resizing/Repositioning vanilla armor
 - Custom armor using custom texture
 - Custom armor using vanilla textures
-- Materials have different shapes
+- Unique shapes for different materials
 
 # Resizing/Repositioning vanilla armor
 
@@ -155,7 +155,7 @@ As you can see, the UVs are a little stretched (double it's height to be exact).
 
 ![More materials](./assets/blockbench-4.png)
 
-In our script, instead of UV offsets we will now be using file names:
+In our script, instead of UV offsets we will now be using vanilla texture file names:
 
 ```lua
 materials = {
@@ -180,9 +180,9 @@ Now our armor works even with a resource pack! (I am using Faithful 32x here)
 
 ![Resource pack armor](./assets/minecraft-7.png)
 
-# Materials have different shapes
+# Unique shapes for different materials
 
-Lastly, what if you wanted to make different shapes for your materials. Let's make the golden helmet look like a crown. I made a really quick crown model:
+Lastly, what if you wanted to make different shapes for your materials. Let's make the golden helmet look like a crown. I made a really quick crown model (these cubes sticking out just use the top face texture of the helmet):
 
 ![Crown model](./assets/blockbench-5.png)
 
@@ -192,7 +192,7 @@ Remember that the texture in BB is not actually going to be used by our model! I
 model.Head.CrownParts.setTexture("Resource", material(helmet.getType()))
 ```
 
-Then make sure that it will only be visible, if the player is wearing gold:
+Then make sure that it will only be visible if the player is wearing gold:
 
 ```lua
 model.Head.CrownParts.setEnabled(helmet.getType() == "minecraft:golden_helmet")
