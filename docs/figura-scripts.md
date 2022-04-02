@@ -38,7 +38,7 @@ Next, we have the `model` tree. This will give you access to your BlockBench mod
 model.Head.Hat.setEnabled(false) -- hides the hat
 ```
 
-Here is the [wiki page](https://github.com/Blancworks/Figura/wiki/Custom-Model-Part) about model parts.
+Here is the [wiki page](https://github.com/Blancworks/Figura/wiki/Custom-Model-API) about model parts.
 
 # Action Wheel and Keybinds
 
@@ -78,7 +78,7 @@ function ping.setHat(x)
 end
 ```
 
-Whenever you call ``ping.setHat()`` this function will be executed on all instances of your script (so on all players including yourself). Calling a ping function only does something on the host instance of the script, other players seeing your model and running the script just ignore this line of code.
+Whenever you call `ping.setHat()` this function will be executed on all instances of your script (so on all players including yourself). Calling a ping function only does something on the host instance of the script, other players seeing your model and running the script just ignore this line of code.
 
 Since action wheel and keybinds are only available to you, the host script instance, you will want to ping everyone else to also execute the action bound to it:
 
