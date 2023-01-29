@@ -3,6 +3,8 @@ title: Custom Armor
 article: true
 ---
 
+**THIS GUIDE IS FOR FIGURA ALPHA! WHILE THE PRINCIPLES STILL APPLY, THE EXAMPLE CODE WILL NOT WORK FOR BETA OR NEWER VERSIONS!**
+
 There are several ways to make custom armor. Let's take a look at all of them:
 
 - Resizing/Repositioning vanilla armor

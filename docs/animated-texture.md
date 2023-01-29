@@ -3,6 +3,8 @@ title: Animated Texture
 article: true
 ---
 
+**THIS GUIDE IS FOR FIGURA ALPHA! WHILE THE PRINCIPLES STILL APPLY, THE EXAMPLE CODE WILL NOT WORK FOR BETA OR NEWER VERSIONS!**
+
 Animating a texture in Figura works differently than in resource packs. Instead of a `.mcmeta` file, we use `CustomModelPart#setUV({u,v})` to change the texture coordinates a cube is using.
 
 In this tutorial we are going to make a blinking animation. To make it a little easier I have gone ahead and seperated the face from the rest of the head. This is optional but makes things easier to demonstrate more clearly. (Duplicate the head cube, set the front face to transparent on the head, and all other faces to transparent on the face. Make sure to be in Per-Face-UV mode for this)

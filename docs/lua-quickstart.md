@@ -137,7 +137,3 @@ print("no")
 end
 end
 ```
-
-# Figura Specific
-
-Now that we have that out of the way, you can take a look at [what you need to know for Figura](/figura-scripts).

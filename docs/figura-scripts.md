@@ -3,7 +3,9 @@ title: Figura Lua Scripts
 article: true
 ---
 
-Now that you [know how to program](/lua-quickstart), you should be able to use [the wiki](https://github.com/Blancworks/Figura/wiki) to get what you need. Some things are currently not on the wiki since its a little outdated, so we will cover these things below.
+**THIS GUIDE IS FOR FIGURA ALPHA! SHOWN CODE WILL NOT WORK FOR BETA OR NEWER VERSIONS!**
+
+Now that you [know how to program](/lua-quickstart), you should be able to use [the wiki](https://github.com/Blancworks/Figura/wiki) to get what you need.
 
 Before you start, note that there is a Figura VSCode extension which provides autocomplete and can be used in combination with a lua language server. (Click on extensions icon to the left, search for "Figura", click install)
 

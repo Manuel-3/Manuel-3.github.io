@@ -3,6 +3,8 @@ title: Common Errors
 article: true
 ---
 
+**THIS GUIDE IS FOR FIGURA ALPHA! SHOWN ERRORS AND CODE MIGHT NOT BE THE SAME FOR BETA OR NEWER VERSIONS!**
+
 This list aims to help lua beginners understand error messages and learn how to fix them.
 
 # attempt to index ? (a nil value)
