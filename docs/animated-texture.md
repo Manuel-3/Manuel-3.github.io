@@ -3,11 +3,9 @@ title: Animated Texture
 article: true
 ---
 
-**THIS GUIDE IS FOR FIGURA ALPHA! WHILE THE PRINCIPLES STILL APPLY, THE EXAMPLE CODE WILL NOT WORK FOR BETA OR NEWER VERSIONS!**
+Animating a texture in Figura works differently than in resource packs. Instead of a `.mcmeta` file, we use `ModelPart:setUV(u,v)` to change the texture coordinates a cube is using.
 
-Animating a texture in Figura works differently than in resource packs. Instead of a `.mcmeta` file, we use `CustomModelPart#setUV({u,v})` to change the texture coordinates a cube is using.
-
-In this tutorial we are going to make a blinking animation. To make it a little easier I have gone ahead and seperated the face from the rest of the head. This is optional but makes things easier to demonstrate more clearly. (Duplicate the head cube, set the front face to transparent on the head, and all other faces to transparent on the face. Make sure to be in Per-Face-UV mode for this)
+In this tutorial we are going to make a blinking animation. To make it a little easier I have gone ahead and seperated the face from the rest of the head. This is optional but makes things easier to demonstrate more clearly. (Duplicate the head cube, set the front face to transparent on the head, and all other sides except the face to transparent on the duplicate. Make sure to be in Per-Face-UV mode for this)
 
 ![Face and Head seperated](./assets/model-1.gif)
 
@@ -15,14 +13,14 @@ For the first part let's just use this dummy animation. To make it, I just expan
 
 ![Texture UV layout](./assets/texture-1.png)
 
-To animate it, all we have to do is make a script that cycles through these. To do this, we can use `World#getTime()` and `CustomModelPart#setUV({u,v})`.
+To animate it, all we have to do is make a script that cycles through these. To do this, we can use `world.getTime()` and `ModelPart:setUV(u,v)`.
 
 The `setUV` function shifts the UV box by a given amount. It will offset it relative to the default position we have given it in BlockBench, in this case the lower left corner. Since `setUV` takes a value fraction as input (1 means whole texture size, 0.5 means half of the texture size, etc..) we can just shift it 1/8 every step to make it go through all 8 frames.
 
 ```lua
-function tick()
+function events.tick()
     local time = world.getTime()
-    model.Head.Face.setUV({time/8,0})
+    models.model.Head.Face:setUV(time/8,0)
 end
 ```
 We don't even have to clamp the time value in between 0 and 7 because `setUV` just cycles around the texture if the value overflows.
@@ -32,9 +30,9 @@ We don't even have to clamp the time value in between 0 and 7 because `setUV` ju
 If you want to make the animation slower, we can divide the time by some value. Note that this will produce float values like 4.5 or something, so it wouldn't shift the full 1/8 step. To fix this we can floor it to the next integer.
 
 ```lua
-function tick()
+function events.tick()
     local time = world.getTime()
-    model.Head.Face.setUV({math.floor(time/2)/8,0})
+    models.model.Head.Face:setUV(math.floor(time/2)/8,0)
 end
 ```
 
@@ -43,9 +41,9 @@ Let's suppose you wanted to use less frames. To prevent the UV from scrolling th
 ![Texture UV layout using less frames](./assets/texture-2.png)
 
 ```lua
-function tick()
+function events.tick()
     local time = world.getTime()
-    model.Head.Face.setUV({(time % 4)/8,0})
+    models.model.Head.Face:setUV((time % 4)/8,0)
 end
 ```
 
@@ -62,22 +60,22 @@ This time we are going to use pixels measurements instead. To use a pixel value,
 ```lua
 local width = 64
 local height = 64
-model.Head.Face.setUV({48/width,-8/height})
+models.model.Head.Face:setUV(48/width,-8/height)
 ```
 
-To manage the UV offsets we can create a table containing all the values, and then just cycle through them similar to what we did earlier.
+To manage the UV offsets we can create a table containing all the values, and then just cycle through them similar to what we did earlier. We wrap the values using vec() to turn them into a vector, so that we are able to pass both values at once.
 
 ```lua
 frames = {
-    {0,0},         -- open eyes
-    {24/64,-8/64}, -- half closed eyes
-    {-8/64,-8/64}, -- closed eys
-    {48/64,-8/64}  -- wide open eyes
+    vec(0,0),         -- open eyes
+    vec(24/64,-8/64), -- half closed eyes
+    vec(-8/64,-8/64), -- closed eys
+    vec(48/64,-8/64)  -- wide open eyes
 }
 
-function tick()
+function events.tick()
     local time = world.getTime()
-    model.Head.Face.setUV(frames[(time % 4) + 1])
+    models.model.Head.Face:setUV(frames[(time % 4) + 1])
 end
 ```
 
@@ -89,21 +87,21 @@ To make it look pretty we can wait a bit until we restart the animation. For thi
 
 ```lua
 frames = {
-    {0,0},         -- open eyes
-    {24/64,-8/64}, -- half closed eyes
-    {-8/64,-8/64}, -- closed eys
-    {48/64,-8/64}  -- wide open eyes
+    vec(0,0),         -- open eyes
+    vec(24/64,-8/64), -- half closed eyes
+    vec(-8/64,-8/64), -- closed eys
+    vec(48/64,-8/64)  -- wide open eyes
 }
 
 time = 1
 nextBlink = 0
 
-function tick()
+function events.tick()
     if time > 4 then
         time = 1
         nextBlink = world.getTime() + math.random(15,50)
     end
-    model.Head.Face.setUV(frames[time])
+    models.model.Head.Face:setUV(frames[time])
     if nextBlink < world.getTime() then
         time = time + 1
     end

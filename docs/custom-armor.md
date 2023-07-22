@@ -3,9 +3,7 @@ title: Custom Armor
 article: true
 ---
 
-**THIS GUIDE IS FOR FIGURA ALPHA! WHILE THE PRINCIPLES STILL APPLY, THE EXAMPLE CODE WILL NOT WORK FOR BETA OR NEWER VERSIONS!**
-
-There are several ways to make custom armor. Let's take a look at all of them:
+There are several ways to make custom armor. Let's take a look at a few of them:
 
 - Resizing/Repositioning vanilla armor
 - Custom armor using custom texture
@@ -17,12 +15,8 @@ There are several ways to make custom armor. Let's take a look at all of them:
 If your model is humanoid and has roughly the same proportions of the vanilla player, it might be enough to just slightly move the vanilla armor around. To do this, simply use `setPos` and `setScale` like so:
 
 ```lua
-armor_model.HELMET.setPos({0,-3,0})
-armor_model.HELMET.setScale({0.9,0.9,0.9})
--- Instead of HELMET you can also use
--- CHESTPLATE
--- LEGGINGS
--- BOOTS
+vanilla_model.HELMET_HEAD:setPos(0,-3,0)
+vanilla_model.HELMET_HEAD:setScale(0.9,0.9,0.9)
 ```
 
 # Custom armor using custom texture
@@ -30,9 +24,7 @@ armor_model.HELMET.setScale({0.9,0.9,0.9})
 First, don't forget to hide the vanilla armor.
 
 ```lua
-for _, v in pairs(armor_model) do
-    v.setEnabled(false)
-end
+vanilla_model.ARMOR:setVisible(false)
 ```
 
 If you want custom armor, simply make cubes for it in BlockBench. Make sure that they are inside your keyword groups so they also move along with the body parts. A simple way to make armor is to duplicate a cube and using the inflate value to make it a little bigger. Then move it's UV to a new spot where you can put the armor texture.
@@ -61,15 +53,15 @@ After you made your complete set of custom armor, you can then add multiple mate
 
 Now we will make a script that enables or disables our parts whenever we wear armor, and also checks what kind of armor we are wearing to decide what material to show.
 
-Here is a really handy utility function for selecting UV offsets according to a material. Just put the correct UV offsets into the `materials` table. Since our UV is originally at diamond, we will put `{0,0}` for it. Then just fill in the other ones. This even works with modded materials if you wanted to.
+Here is a really handy utility function for selecting UV offsets according to a material. Just put the correct UV offsets into the `materials` table. Since our UV is originally at diamond, we will put `vec(0,0)` for it. Then just fill in the other ones. This even works with modded materials if you wanted to.
 
 ```lua
 -- These values are later used for setUV
 materials = {
-    ["diamond"]={0,0},
-    ["golden"]={56/192,0},
-    ["netherite"]={56/192,32/64},
-    ["leather"]={0,32/64},
+    ["diamond"]=vec(0,0),
+    ["golden"]=vec(56/192,0),
+    ["netherite"]=vec(56/192,32/64),
+    ["leather"]=vec(0,32/64),
 }
 
 -- This function checks the name of an item to return the
@@ -79,41 +71,41 @@ function material(item)
     local n = name:find("_")
     local mat = name:sub(0,n~=nil and n-1 or name:len())
     local uv = materials[mat]
-    return (uv~=nil and uv or {0,0})
+    return (uv~=nil and uv or vec(0,0))
 end
 ```
 
-For example, if we now call `material("minecraft:netherite_helmet")` or `material("minecraft:netherite_chestplate")` it will return `{56/192,32/64}` both times.
+For example, if we now call `material("minecraft:netherite_helmet")` or `material("minecraft:netherite_chestplate")` it will return `vec(56/192,32/64)` both times.
 
 You can obviously add more materials if you'd like.
 
 Now let's actually make the armor work, shall we?
 
 ```lua
-function tick()
+function events.tick()
     -- First get all the equipped armor pieces
-    local helmet = player.getEquipmentItem(6)
-    local chestplate = player.getEquipmentItem(5)
-    local leggings = player.getEquipmentItem(4)
-    local boots = player.getEquipmentItem(3)
+    local helmet = player:getItem(6)
+    local chestplate = player:getItem(5)
+    local leggings = player:getItem(4)
+    local boots = player:getItem(3)
 
     -- Move UV according to the material
-    model.Head.Helmet.setUV(material(helmet.getType()))
-    model.Body.Chestplate.setUV(material(chestplate.getType()))
-    model.RightArm.Chestplate.setUV(material(chestplate.getType()))
-    model.LeftArm.Chestplate.setUV(material(chestplate.getType()))
+    models.model.Head.Helmet:setUV(material(helmet.id))
+    models.model.Body.Chestplate:setUV(material(chestplate.id))
+    models.model.RightArm.Chestplate:setUV(material(chestplate.id))
+    models.model.LeftArm.Chestplate:setUV(material(chestplate.id))
 
     -- Enable armor when wearing something, disable when not
-    model.Head.Helmet.setEnabled(helmet.getType()~="minecraft:air")
-    model.Body.Chestplate.setEnabled(chestplate.getType()~="minecraft:air")
-    model.RightArm.Chestplate.setEnabled(chestplate.getType()~="minecraft:air")
-    model.LeftArm.Chestplate.setEnabled(chestplate.getType()~="minecraft:air")
+    models.model.Head.Helmet:setVisible(helmet.id~="minecraft:air")
+    models.model.Body.Chestplate:setVisible(chestplate.id~="minecraft:air")
+    models.model.RightArm.Chestplate:setVisible(chestplate.id~="minecraft:air")
+    models.model.LeftArm.Chestplate:setVisible(chestplate.id~="minecraft:air")
 
     -- You can also add enchantment glint
-    model.Head.Helmet.setShader(helmet.hasGlint() and "Glint" or "None")
-    model.Body.Chestplate.setShader(chestplate.hasGlint() and "Glint" or "None")
-    model.RightArm.Chestplate.setShader(chestplate.hasGlint() and "Glint" or "None")
-    model.LeftArm.Chestplate.setShader(chestplate.hasGlint() and "Glint" or "None")
+    models.model.Head.Helmet:setSecondaryRenderType(helmet:hasGlint() and "Glint2" or "None")
+    models.model.Body.Chestplate:setSecondaryRenderType(chestplate:hasGlint() and "Glint2" or "None")
+    models.model.RightArm.Chestplate:setSecondaryRenderType(chestplate:hasGlint() and "Glint2" or "None")
+    models.model.LeftArm.Chestplate:setSecondaryRenderType(chestplate:hasGlint() and "Glint2" or "None")
 end
 ```
 
@@ -125,22 +117,22 @@ We can use the following function to get the color of an armor piece:
 
 ```lua
 function getColor(stack)
-    if not stack.getType():find("leather") then return {1,1,1} end
-    local tag = stack.getTag()
+    if not stack.id:find("leather") then return vec(1,1,1) end
+    local tag = stack:getTag()
     if tag ~= nil and tag.display ~= nil then
         return vectors.intToRGB(tag.display.color)
     end
-    return {160/255, 101/255, 64/255} -- default leather color
+    return vec(160/255, 101/255, 64/255) -- default leather color
 end
 ```
 
 With that, we can add coloring to the bottom of our tick function:
 
 ```lua
-model.Head.Helmet.setColor(getColor(helmet))
-model.Body.Chestplate.setColor(getColor(chestplate))
-model.RightArm.Chestplate.setColor(getColor(chestplate))
-model.LeftArm.Chestplate.setColor(getColor(chestplate))
+models.model.Head.Helmet:setColor(getColor(helmet))
+models.model.Body.Chestplate:setColor(getColor(chestplate))
+models.model.RightArm.Chestplate:setColor(getColor(chestplate))
+models.model.LeftArm.Chestplate:setColor(getColor(chestplate))
 ```
 
 And there we go!
@@ -151,7 +143,7 @@ And there we go!
 
 Alternatively, you can use the vanilla armor textures. This makes it so your armor works with resource packs and you also don't have to use space on your texture.
 
-For this it is useful to import one of the texture files into your BlockBench project, in order to figure out the proper UV that is needed. IMPORTANT: The model is **not** going to use that importet texture! Figura only supports one texture at a time (for now), and it is going to read whatever texture you saved to the `texture.png` file, **not the textures inside your BB project!** It is just for reference, you can even delete it afterwards, it won't matter.
+For this it is useful to import one of the texture files into your BlockBench project, in order to figure out the proper UV that is needed.
 
 As you can see, the UVs are a little stretched (double it's height to be exact). This is because the armor texture file is 32 pixels high, but the models texture is 64 pixels high. To stretch individual faces you must be using per-face-UV mode.
 
@@ -172,10 +164,10 @@ Then in our tick function, instead of using `setUV`, we will be using `setTextur
 
 ```lua
 -- Select texture according to the material
-model.Head.Helmet.setTexture("Resource", material(helmet.getType()))
-model.Body.Chestplate.setTexture("Resource", material(chestplate.getType()))
-model.RightArm.Chestplate.setTexture("Resource", material(chestplate.getType()))
-model.LeftArm.Chestplate.setTexture("Resource", material(chestplate.getType()))
+models.model.Head.Helmet:setPrimaryTexture("Resource", material(helmet.id))
+models.model.Body.Chestplate:setPrimaryTexture("Resource", material(chestplate.id))
+models.model.RightArm.Chestplate:setPrimaryTexture("Resource", material(chestplate.id))
+models.model.LeftArm.Chestplate:setPrimaryTexture("Resource", material(chestplate.id))
 ```
 
 Now our armor works even with a resource pack! (I am using Faithful 32x here)
@@ -191,13 +183,13 @@ Lastly, what if you wanted to make different shapes for your materials. Let's ma
 Remember that the texture in BB is not actually going to be used by our model! Instead, add a line to our `setTexture`s (or `setUV`s, if you are using custom texture):
 
 ```lua
-model.Head.CrownParts.setTexture("Resource", material(helmet.getType()))
+mdoels.model.Head.CrownParts:setPrimaryTexture("Resource", material(helmet.id))
 ```
 
 Then make sure that it will only be visible if the player is wearing gold:
 
 ```lua
-model.Head.CrownParts.setEnabled(helmet.getType() == "minecraft:golden_helmet")
+mdoels.model.Head.CrownParts:setVisible(helmet.id == "minecraft:golden_helmet")
 ```
 
 ![Crown in game](./assets/minecraft-8.png)
