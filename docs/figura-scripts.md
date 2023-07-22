@@ -3,8 +3,6 @@ title: Figura Lua Scripts
 article: true
 ---
 
-**THIS GUIDE IS FOR FIGURA 0.1.0! NEWER VERSIONS MIGHT HAVE DIFFERENT SYNTAX!**
-
 Now that you [know how to program](/lua-quickstart), you should be able to use [the wiki](https://github.com/KitCat962/FiguraRewriteRewrite/wiki) to get what you need.
 
 Before you start, note that there is a [Figura VSCode extension](https://marketplace.visualstudio.com/items?itemName=Manuel-Underscore.figura) which provides autocomplete for BlockBench models and [Figura docs](https://github.com/GrandpaScout/FiguraRewriteVSDocs) to provide autocomplete for all Figura features. (To install in VSCode, click on extensions icon to the left, search for "Figura", click install. Docs need to be downloaded manually.)
