@@ -69,7 +69,7 @@ To manage the UV offsets we can create a table containing all the values, and th
 frames = {
     vec(0,0),         -- open eyes
     vec(24/64,-8/64), -- half closed eyes
-    vec(-8/64,-8/64), -- closed eys
+    vec(-8/64,-8/64), -- closed eyes
     vec(48/64,-8/64)  -- wide open eyes
 }
 
