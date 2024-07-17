@@ -93,8 +93,8 @@ frames = {
     vec(48/64,-8/64)  -- wide open eyes
 }
 
-time = 1
-nextBlink = 0
+local time = 1
+local nextBlink = 0
 
 function events.tick()
     if time > 4 then
