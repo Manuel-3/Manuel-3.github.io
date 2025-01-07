@@ -38,6 +38,7 @@ end
 
 You can see that normally we displayed every frame for one tick, but if we divide the time by 2 it would display every frame for two ticks making it slower. If we write down each time value and the calculated frame we would display, it would look like this:
 
+```
 floor(time/2) = frame
 floor(0/2) = 0
 floor(1/2) = 0
@@ -46,6 +47,7 @@ floor(3/2) = 1
 floor(4/2) = 2
 floor(5/2) = 2
 ...
+```
 
 Now let's suppose you wanted to use less frames. To prevent the UV from scrolling through the entire texture, and instead only use 4 frames for example, we can use the modulo operator, which returns the remainder you get if you would do an integer division, for example `6 % 4 = 2` because `6 / 4 = 1 with remainder of 2`.
 
