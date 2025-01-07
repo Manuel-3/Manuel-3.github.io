@@ -73,7 +73,7 @@ Now somewhere else in your code you can call the function and give it any value 
 ```lua
 greeting("Barry") -- > Hello Barry
 -- you can also use a variable instead:
-person = "Cynthia"
+local person = "Cynthia"
 greeting(person)  -- > Hello Cynthia
 ```
 
