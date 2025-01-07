@@ -17,19 +17,44 @@
     <meta name="theme-color" content="{{ site.color.android_theme | default: site.color.gradient_left }}">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/darklightmode.css?v=' | append: site.github.build_revision | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/button.css?v=' | append: site.github.build_revision | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/loadingspinner.css?v=' | append: site.github.build_revision | relative_url }}">
     {% if site.syntax_theme %}
       <link rel="stylesheet" href="{{ site.syntax_theme }}">
     {% endif %}
   </head>
   <body>
+    <!-- Dark Mode Switch Begin -->
+    <label class="switch" style="position: absolute; left: 1rem; top: 1rem;">
+      <input type="checkbox" id="theme-toggle">
+      <span class="slider"></span>
+    </label>
+    <script>
+      DarkReader = undefined;
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.95/darkreader.min.js"></script>
+    <script>
+      if (DarkReader) {
+        DarkReader.setFetchMethod(window.fetch);
+        const checkbox = document.getElementById("theme-toggle");
+        checkbox.checked = !(localStorage.getItem('darkMode') == 'false');
+        if (checkbox.checked) { DarkReader.enable() } else { DarkReader.disable() }
+        checkbox.addEventListener('change', e => {
+          localStorage.setItem('darkMode', e.target.checked);
+          if (e.target.checked) { DarkReader.enable() } else { DarkReader.disable() }
+        })
+      }
+    </script>
+    <!-- Dark Mode Switch End -->
     <a id="skip-to-content" href="#content">Skip to the content.</a>
 
     <header class="page-header" role="banner">
-      <h1 class="project-name">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
+      <h1 class="project-name darkreader-fix">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
       <!-- <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2> -->
       {% for thing in site.pages %}
         {% if thing.location %}
-        <a class="nav-item" href="{{thing.location}}">
+        <a class="nav-item darkreader-fix" href="{{thing.location}}">
           {{ thing.title }}
         </a>
         {% endif %}
