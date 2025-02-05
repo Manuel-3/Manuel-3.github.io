@@ -19,8 +19,8 @@ The `setUV` function shifts the UV box by a given amount. It will offset it rela
 
 ```lua
 function events.tick()
-    local time = world.getTime()
-    models.model.Head.Face:setUV(time/8,0)
+    local time = world.getTime() -- get current time
+    models.model.Head.Face:setUV(time/8,0) -- use it to shift the UV
 end
 ```
 We don't even have to clamp the time value in between 0 and 7 because `setUV` just cycles around the texture if the value overflows.
@@ -60,7 +60,7 @@ function events.tick()
 end
 ```
 
-If you try logging `time % 4` in chat you will see that it only ranges from 0 to 3 and then starts over again even if the time is actually already much higher than 4.
+If you try adding this code in the tick event `print(time % 4)` it will print it in chat and you will see that it only ranges from 0 to 3 and then starts over again even if the world time is actually already much higher than 4.
 
 ![Value output](./assets/chat-1.png)
 
@@ -99,7 +99,7 @@ As you can see, it is now playing the blinking animation.
 
 ![Blinking animation](./assets/minecraft-2.gif)
 
-To make it not play continuously, we can wait a bit until we restart the animation. For this its easier to make our own timer variable. (Note that my screen recorder seemingly didn't manage to get enough fps to record all frames so the gif might look like some are skipped.)
+To make it not play continuously, we can wait a bit until we restart the animation. For this its easier to make our own timer variable, so that the time isnt always increased each tick automatically, but instead we can choose to wait and only increase it when we want the blink to happen. To do this we make a `frame` variable which will replace our usual `world.getTime()` and just tells us which frame we are currently displaying, and a `nextBlink` variable that stores the moment in time when we want the next blink to happen. We can even add a bit of randomness into the blinking delay by using `math.random(min,max)` which gives us a number between min and max.
 
 ```lua
 local frames = {
@@ -109,19 +109,22 @@ local frames = {
     vec(48/64,-8/64)  -- wide open eyes
 }
 
-local time = 1
+local frame = 1
 local nextBlink = 0
 
 function events.tick()
-    if time > 4 then
-        time = 1
-        nextBlink = world.getTime() + math.random(15,50)
+    if frame > 4 then -- if we cycled through all 4 frames..
+        frame = 1 -- ..reset animation..
+        nextBlink = world.getTime() + math.random(20,50) -- ..and choose the next blink time a random amount of ticks in the future
     end
-    models.model.Head.Face:setUV(frames[time])
+    models.model.Head.Face:setUV(frames[frame]) -- regular setUV as always
+    -- now wait for the world time to be greater than our next blink time before increasing the animation frame
     if nextBlink < world.getTime() then
-        time = time + 1
+        frame = frame + 1
     end
 end
 ```
+
+(Note that my screen recorder seemingly didn't manage to get enough fps to record all frames so the gif might look like some are skipped.)
 
 ![Blinking animation with waiting](./assets/minecraft-3.gif)
